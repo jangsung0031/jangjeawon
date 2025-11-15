@@ -1,0 +1,283 @@
+.header {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 80px;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  position: relative;
+}
+
+.logo-img {
+  height: 48px;
+  object-fit: contain;
+}
+
+.logout-link {
+  background: none;
+  border: none;
+  color: #07361c;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 12px;
+  font-family: inherit;
+  padding: 0;
+}
+
+.logo-link {
+  display: inline-block;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #07361c;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #3d6344;
+}
+
+.user-welcome {
+  font-weight: 500;
+  font-size: 16px;
+  color: #07361c;
+  white-space: nowrap;
+  padding-left: 4px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  color: #07361c;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  font-weight: 500;
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: #07361c;
+  cursor: pointer;
+  align-items: center;
+  gap: 6px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dropdown-section {
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+}
+
+@media (min-width: 769px) {
+  .dropdown-section {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 10px 0;
+    min-width: 160px;
+  }
+
+  .dropdown:hover .dropdown-section {
+    display: flex;
+  }
+}
+
+.dropdown-section a,
+.dropdown-section button.logout-link {
+  padding: 10px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  background: none;
+  border: none;
+  text-align: left;
+  color: #07361c;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.dropdown-section a:hover,
+.dropdown-section button.logout-link:hover {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .dropdown{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header {
+    height: 60px;
+  }
+
+  .header-inner {
+    justify-content: center;
+    position: relative;
+  }
+
+  .logo-link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .logo-img {
+    height: 38px;
+  }
+
+  .hamburger {
+    left: 14px;
+    right: auto;
+    position: absolute;
+    display: block;
+    top: 7px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #fff;
+    position: fixed;
+    top: 60px;
+    left: -110%;
+    width: 100%;
+    height: 78vh;
+    padding: 20px 3px 100px;
+    transition: left 0.3s ease-in-out;
+    z-index: 999;
+    row-gap: 30px;
+  }
+
+  .nav-links.open {
+    left: 0;
+  }
+
+  .nav-menu-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dropdown-section {
+    position: static;
+    background-color: #142c19;
+    padding: 10px 0;
+    flex-direction: column;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    box-shadow: none;
+    width: 80%;
+  }
+
+  .dropdown-section.show {
+    display: flex !important;
+  }
+
+  .dropdown-section a,
+  .dropdown-section button.logout-link {
+    font-size: 15px;
+    font-weight: 400;
+    padding: 10px 0;
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .dropdown-section a:hover,
+  .dropdown-section button.logout-link:hover {
+    color: white;
+  }
+
+  .user-welcome {
+    margin-top: 20px;
+    padding: 10px;
+    font-weight: bold;
+    color: #07361c;
+  }
+
+   .mobile-auth-buttons {
+    margin-top: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 93%;
+  }
+  
+  .mobile-auth-logout-buttons {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 93%;
+  }
+
+  .mobile-auth-logout-buttons .logout-link {
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: none;
+    color: white;
+    background-color: #07361c;
+  }
+
+.mobile-auth-buttons button {
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.create-account {
+  background-color: #07361c;
+  color: white;
+  border: none;
+}
+
+.login-button {
+  background: none;
+  border: 1px solid #07361c;
+  color: #07361c;
+}
+
+}

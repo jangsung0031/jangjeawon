@@ -1,0 +1,185 @@
+(정동화) 
+수상레저 소개, 등록, 예약, 객실예약 
+
+[백엔드]
+java.kr.co.th.vo - WaterReservation 
+
+java.kr.co.Service 
+- WaterReservationService
+
+java.kr.co.Repository
+- WaterRepository
+
+java.kr.co.dto
+- WaterReservationDTO
+- ReservationDTO
+- ReservationResponseDTO
+
+java.kr.co.Controller
+ - WaterReservationController
+
+[프론트엔드]
+teamhub\src\components - WaterLeisureReservation.js
+
+teamhub\src\mypage - AdminWaterPage.js
+
+teamhub\src\pages - LeisureIntro.js, LeisureReserve.js, PaymentPage.js
+
+teamhub\src\room - Room.js
+
+teamhub\src\css : 
+- WaterLeisureReservation.css
+- AdminWaterPage.css
+- LeisureIntro.css
+- LeisureReserve.css
+- PaymentPage.css
+- Room.css
+- RoomIntro.css
+
+=========================================================================
+(장재원)
+내 정보 확인 / 수정 
+리뷰 작성/수정/삭제 , 개인리뷰 확인 , 전체리뷰 확인 , 관리자 답글 작성/수정/삭제
+결제 내역 확인/결제 취소
+
+[백엔드]
+java.kr.co.th.vo - Review : 전체
+
+java.kr.co.util - JwtAuthenticationFilter : 전반적으로
+
+java.kr.co.Service 
+ - ReviewService : 전체
+ - ReviewServiceImpl : 전체
+ - WaterReservationService : getReservationsByUser(User user)
+ - QnAService : getMyQnAList
+
+java.kr.co.Repository
+ - ReviewRepository : 전체
+ - WaterRepository : Page<WaterReservation> findByFilters
+ - QnARepository : findByUsernameOrderByCreatedAtDesc
+ - ReservationRepository : Page<Reservation> findByFilters
+
+java.kr.co.dto
+ - ReviewDTO : 전체
+ - QnAResponseDto : 전체
+
+java.kr.co.Controller
+ - AdminReviewController : 전체
+ - QnAController : getMyQnAs
+ - ReservationController : getPagedRoomReservations / getReservationForReview / getAllRoomReservations() /cancelReservation
+ - ReviewController : 전체
+ - UserController : getUserInfo / updateUserInfo
+ - WaterReservationController : getWaterReservationById / getPagedReservations / getMyReservations
+
+java.kr.co.config
+- SecurityConfig : 메서드 보단 config.addAllowedMethod("*"); 식으로 추가만 진행함.
+- WebConfig : addResourceHandlers
+
+[프론트엔드]
+ - teamhub\src\mypage : 전체 및 해당 css까지
+=========================================================================
+(김준경)
+객실 예약, Q&A, FAQ, 공지사항 기능 구현 
+
+[백엔드]
+java.kr.co.th.vo
+- QnA.java
+- Notice.java
+- Faq.java
+- Reservation.java
+- Room.java
+
+java.kr.co.Service 
+ - QnAService : 전체
+ - NoticeService : 전체
+
+java.kr.co.Repository
+ - FaqRepository
+ - NoticeRepository 
+ - QnARepository
+ - ReservationRepository
+ - RoomRepository
+
+java.kr.co.dto
+ - NoticeDto
+ - QnAAnswerDto, QnARequestDto, QnAResponseDto
+ - ReservationRequestDTO, ReservationResponseDTO, ReservationDTO 기초 작업
+
+java.kr.co.Controller
+ - QnAController
+ - FaqController
+ - NoticeController
+ - RoomController
+ - ReservationController ("/soldout")
+
+[프론트엔드]
+- faq 폴더 전체
+- qna 폴더 전체
+- notice 폴더 전체
+- home 폴더
+  - Main.js 전체
+  - Header.js 전체
+  - Footer.js 전체 
+- 관련 css 전체
+=========================================================================
+(유정현) 
+상세소개 및 챗봇
+객실소개/상세보기, 실내 액티비티소개/상세보기, 챗봇 
+
+[프론트엔드]
+- teamhub\src\Activity폴더 전체
+- teamhub\src\components\RoomCard.js
+- teamhub\src\data (ƒaqData, RoomData)폴더 전체
+- teamhub\src\home\ChatBot.js
+- teamhub\src\pages\Roomdetail.js
+- teamhub\src\pages\RoomIntro.js
+- teamhub\src\에 각 main, app.js에 연결
+
+[백엔드]
+package kr.co.th.Controller - ChatController.java
+Application.properties에 openai.api.key 연결
+=========================================================================
+(이영민)
+[백엔드]
+
+config파일
+전체
+
+controller파일
+ReservationContorller
+SmsController
+WaterReservationController 
+
+dto파일
+ReservationDTO
+ReservationRequestDTO
+ReservationResponseDTO
+
+repository파일
+ReservationRepository
+
+service파일
+EmailService
+PortOneService
+SmsService
+
+utill파일 
+전체
+
+vo파일
+Reservation
+
+[프론트 엔드]
+RoomPay 결제관련
+AdminRoomPage
+AdminWaterPage
+Form
+FindId
+FindPw 
+PaymentPage 결제관련
+
+css
+AdminRoomPage
+AdminWaterPage
+Form
+=========================================================================

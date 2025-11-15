@@ -1,0 +1,137 @@
+.user-reserve-wrapper {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.user-reserve-wrapper h2 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.user-reserve-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.user-reserve-table th,
+.user-reserve-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.user-reserve-table th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+.user-reserve-table .status-cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+.cancel-btn,
+.review-btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.cancel-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #c0392b;
+}
+
+.review-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.review-btn:hover {
+  background-color: #2980b9;
+}
+
+.complete-text {
+  font-size: 0.9rem;
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.user-card-container {
+  display: none;
+}
+
+.user-reserve-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.2rem;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s;
+  margin-bottom: 1rem;
+}
+
+.user-reserve-card:hover {
+  transform: translateY(-2px);
+}
+
+.user-reserve-card div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.user-reserve-card strong {
+  font-weight: bold;
+}
+
+.user-reserve-button {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .user-reserve-table {
+    display: none;
+  }
+
+  .user-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .user-reserve-wrapper h2 {
+    font-size: 1.6rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.no-reserve {
+  text-align: center;
+  color: #888;
+  font-size: 1rem;
+  margin-top: 2rem;
+}

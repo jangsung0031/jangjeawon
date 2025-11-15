@@ -1,0 +1,156 @@
+.mypage-container {
+  max-width: 1000px;
+  margin: 120px auto 0;
+  padding: 40px;
+  font-family: 'Pretendard', sans-serif;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.info {
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #222;
+}
+
+.mypage-userinfo {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 32px;
+  background-color: #f7f9fc;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease;
+}
+
+.mypage-userinfo p {
+  margin: 18px 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.edit-button {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 28px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.loading-message {
+  font-size: 18px;
+  text-align: center;
+  color: #777;
+  margin-top: 2rem;
+}
+
+.mypage-container > .mypage-userinfo + section {
+  max-width: 1000px;
+  margin: 24px auto 0;
+  padding: 0 0 24px;
+}
+
+.mypage-container > .mypage-userinfo + section > h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222;
+  margin: 16px 0 12px;
+}
+
+.mypage-container > .mypage-userinfo + section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mypage-container > .mypage-userinfo + section li {
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  transition: transform .12s ease;
+  cursor: pointer;
+}
+
+.mypage-container > .mypage-userinfo + section li:hover {
+  transform: translateY(-2px);
+}
+
+.mypage-container > .mypage-userinfo + section li > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mypage-container > .mypage-userinfo + section li strong {
+  max-width: calc(100% - 120px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mypage-container > .mypage-userinfo + section li > div:first-child span:last-child {
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #e2e2e2;
+  font-size: .78rem;
+  background: #f7f7f7;
+  color: #444;
+}
+.btnbtn{
+  display: none;
+}
+
+.mypage-container > .mypage-userinfo + section li > div:nth-child(2) {
+  color: #666;
+  font-size: .9rem;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .mypage-container {
+    padding: 20px;
+  }
+
+  .mypage-userinfo {
+    padding: 24px;
+  }
+
+  .mypage-userinfo p {
+    font-size: 17px;
+  }
+
+  .edit-button {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    padding: 14px 0px;
+  }
+
+.mypage-container > .mypage-userinfo + section {
+    padding-bottom: 16px;
+  }
+
+}

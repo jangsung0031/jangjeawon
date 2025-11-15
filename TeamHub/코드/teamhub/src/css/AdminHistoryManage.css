@@ -1,0 +1,124 @@
+.admin-history-container {
+  padding: 30px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.admin-history-title {
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.admin-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+.admin-history-table th,
+.admin-history-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.admin-history-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #333;
+}
+
+.admin-history-status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-history-status.예약완료 {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.admin-history-status.취소요청 {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.admin-history-status.취소완료 {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.admin-history-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 14px;
+}
+
+.admin-history-btn:hover {
+  background-color: #0056b3;
+}
+
+.admin-history-no-data {
+  text-align: center;
+  padding: 30px 0;
+  font-size: 16px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .admin-history-table,
+  .admin-history-table thead,
+  .admin-history-table tbody,
+  .admin-history-table th,
+  .admin-history-table td,
+  .admin-history-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .admin-history-table thead {
+    display: none;
+  }
+
+  .admin-history-table tr {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .admin-history-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .admin-history-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #555;
+  }
+
+  .admin-history-title {
+    font-size: 22px;
+  }
+
+  .admin-history-btn {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+}

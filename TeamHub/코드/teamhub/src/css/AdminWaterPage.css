@@ -1,0 +1,188 @@
+.admin-reserve-wrapper {
+  padding: 32px 16px;
+  max-width: 1000px;
+  margin: auto;
+  font-family: 'Pretendard', sans-serif;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #07361c;
+}
+
+.filter-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.filter-box input,
+.filter-box select {
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.reservation-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+.reservation-table thead {
+  background-color: #f6f6f6;
+}
+
+.reservation-table th,
+.reservation-table td {
+  padding: 14px 12px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.reservation-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.canceled {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.reservation-table button {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.reservation-table button:hover {
+  background-color: #d32f2f;
+}
+
+.review-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.review-pagination button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  background-color: #00796b;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.review-pagination button:hover {
+  background-color: #00695c;
+}
+
+.review-pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.review-pagination span {
+  font-size: 14px;
+  color: #333;
+}
+
+.review-pagination button.active {
+  background-color: #004d40;
+  font-weight: bold;
+}
+
+.review-pagination {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 768px) {
+  .reservation-table {
+    display: block;
+    width: 100%;
+    border: none;
+  }
+
+  .reservation-table thead {
+    display: none;
+  }
+
+  .reservation-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .reservation-table tr {
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 0 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .reservation-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    padding: 8px 0;
+    font-size: 14px;
+    position: relative;
+  }
+
+  .reservation-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #444;
+    flex: 1;
+    text-align: left;
+  }
+
+  .reservation-table td:last-child {
+    justify-content: flex-end;
+  }
+
+  .reservation-table td[data-label="관리"]::before {
+    content: none;
+  }
+
+  .filter-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 0 8px;
+  }
+
+  .filter-box input,
+  .filter-box select {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  .reservation-table td[data-label="취소"]::before {
+  content: none;
+}
+}

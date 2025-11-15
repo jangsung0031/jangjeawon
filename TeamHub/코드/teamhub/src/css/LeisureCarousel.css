@@ -1,0 +1,11 @@
+.carousel-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}

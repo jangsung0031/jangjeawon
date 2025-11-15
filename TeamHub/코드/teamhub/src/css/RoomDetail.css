@@ -1,0 +1,96 @@
+.room-detail-container {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.room-detail-image {
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.room-detail-type {
+  font-size: 16px;
+  color: gray;
+}
+
+.room-detail-desc {
+  margin: 16px 0;
+  font-size: 18px;
+}
+
+.room-detail-price {
+  font-weight: bold;
+  font-size: 20px;
+  color: #007bff;
+}
+
+.room-detail-boxes {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.room-detail-box {
+  flex: 1;
+  min-width: 250px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .room-detail-container {
+    padding: 10px;
+  }
+
+  .room-detail-image {
+    height: 300px;
+  }
+
+  .room-detail-boxes {
+    flex-direction: column;
+  }
+
+  .room-detail-box {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .facility-card img {
+    height: 120px;
+  }
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px;
+  color: #555;
+}
+
+.slick-slide img {
+  border-radius: 12px;
+  height: 500px;
+  object-fit: cover;
+  width: 100%;
+}
+.room-detail-container .slick-slider {
+  position: relative;
+  margin: 0 auto 20px;
+  max-width: 800px;
+}

@@ -1,0 +1,231 @@
+.reserve-page-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.date-picker-wrapper {
+  margin: 12px 0;
+}
+
+.date-picker {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.leisure-image-box {
+  width: 40%;
+}
+
+.price-info-box {
+  width: 28%;
+}
+
+.reservation-card {
+  width: 28%;
+}
+
+.reservation-card {
+  width: 100%;
+  max-width: 360px;
+  position: static;
+}
+
+.ticket-button-group {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ticket-button {
+  padding: 12px 18px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  font-size: 15px;
+  min-width: 80px;
+  flex: 1;
+  text-align: center;
+}
+
+.ticket-button.active {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+.price-display {
+  margin: 16px 0;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.price-display::before {
+  margin-right: 10px;
+}
+
+.price-display strong {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.submit-button {
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.2);
+  transition: all 0.25s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.submit-button:hover {
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+  transform: translateY(-2px);
+}
+
+.submit-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+}
+
+.people-counter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.people-counter button {
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  background-color: #e0e7ff;
+  color: #1d4ed8;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.people-counter button:hover {
+  background-color: #c7d2fe;
+}
+
+.people-counter button:active {
+  transform: scale(0.95);
+  background-color: #a5b4fc;
+}
+
+@media screen and (max-width: 768px) {
+  .reserve-page-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .leisure-image-box {
+    order: 1;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .price-info-box {
+    order: 2;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .reservation-card {
+    order: 3;
+    width: 100%;
+  }
+
+  .reservation-box-fixed {
+    position: static !important;
+    top: auto !important;
+  }
+
+  .date-selects {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ticket-button-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .ticket-button {
+    width: 30%;
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 0;
+  }
+
+  .price-display {
+    margin: 16px 0;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .submit-button {
+    font-size: 15px;
+    padding: 14px;
+    width: 100%;
+  }
+
+  .people-counter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  margin: 15px 0;
+}
+
+  .people-counter span {
+    font-size: 16px;
+  }
+
+  .people-counter button {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+  .date-picker {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

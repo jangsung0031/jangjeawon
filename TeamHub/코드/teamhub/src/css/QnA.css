@@ -1,0 +1,461 @@
+.qna-container {
+  max-width: 1000px;
+  margin: 120px auto;
+  padding: 0 20px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.qna-write-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.qna-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.qna-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.qna-tabs a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.qna-tabs span {
+  cursor: pointer;
+  color: #999;
+}
+
+.qna-tabs .active {
+  color: #000;
+  font-weight: bold;
+}
+
+.qna-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.qna-table th,
+.qna-table td {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 8px;
+  text-align: left;
+}
+
+.qna-table th {
+  background-color: #fafafa;
+  font-weight: 600;
+}
+
+.qna-link {
+  color: #222;
+  text-decoration: none;
+}
+
+.qna-link:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.qna-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.qna-button {
+  height: 42px;
+  padding: 0 20px;
+  background-color: #07361c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qna-button:hover {
+  background-color: #095d33;
+}
+
+.qna-button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.qna-button.register {
+  background-color: #07361c;
+}
+
+.qna-button.register:hover {
+  background-color: #065a2e;
+}
+
+.qna-button.list {
+  background-color: #555;
+}
+
+.qna-button.list:hover {
+  background-color: #333;
+}
+
+.qna-button.delete {
+  background-color: #dc3545;
+}
+
+.qna-button.delete:hover {
+  background-color: #c82333;
+}
+
+.qna-write-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.qna-write-form label {
+  font-weight: bold;
+}
+
+.qna-write-form select,
+.qna-write-form input,
+.qna-write-form textarea {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.qna-write-form textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.qna-detail-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.qna-detail-box {
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+}
+
+.qna-content,
+.qna-answer {
+  margin-top: 12px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  background: #fafafa;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  text-align: left;
+}
+
+.qna-manage-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.qna-manage-container .qna-detail-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.qna-manage-container .qna-content {
+  background: #fefefe;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+}
+
+.qna-manage-container .qna-answer {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  resize: vertical;
+}
+
+.admin-qna-detail-box {
+  background-color: #fefefe;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 25px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-qna-content {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin-top: 10px;
+}
+
+.admin-qna-answer {
+  width: 100%;
+  font-size: 14px;
+  resize: vertical;
+  border: 1px solid #ccc;
+  height: 140px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+
+.admin-qna-answer:focus {
+  outline: none;
+  border: 1px solid #07361c;
+}
+
+.qna-writer-select {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  padding: 10px 0 0;
+}
+
+.qna-writer-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+  background-color: #f1f1f1;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: background-color 0.2s, border 0.2s;
+  white-space: nowrap;
+  min-width: 100px;
+  justify-content: center;
+  text-align: center;
+}
+
+.qna-writer-option input[type="radio"] {
+  accent-color: #07361c;
+  transform: scale(1.1);
+  margin: 0;
+}
+
+.qna-writer-option:hover {
+  background-color: #e8f5ec;
+  border-color: #07361c;
+}
+
+.qna-search-box {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 42px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0 12px;
+  background-color: white;
+}
+
+.notice-search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  margin: 0 auto 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 12px;
+  background-color: white;
+}
+
+.qna-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #333;
+}
+
+.qna-search-input::placeholder {
+  color: #aaa;
+}
+
+.qna-search-icon {
+  font-size: 18px;
+  color: #555;
+  margin-left: 8px;
+}
+
+
+@media (max-width: 768px) {
+  .qna-table{
+    font-size: 12px;
+  }
+
+  .qna-container {
+    max-width: 100%;
+    margin: 90px auto 40px;
+    padding: 0 14px;
+    font-size: 15px;
+  }
+
+  .qna-write-container,
+  .qna-detail-container,
+  .qna-manage-container,
+  .admin-qna-detail-box {
+    max-width: 100%;
+    margin: 24px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+
+  .qna-title {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .qna-tabs {
+    gap: 16px;
+    margin: 12px 0 18px;
+    font-size: 13px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .qna-search-box,
+  .notice-search-box {
+    width: 100%;
+    height: 40px;
+    margin: 0 0 16px 0;
+    padding: 0px;
+  }
+  .qna-search-input { font-size: 14px; }
+
+  .qna-writer-select {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .qna-writer-option {
+    width: 90%;
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .qna-write-form { gap: 14px; }
+  .qna-write-form select,
+  .qna-write-form input,
+  .qna-write-form textarea {
+    font-size: 14px;
+    padding: 6px;
+  }
+  .qna-write-form textarea { min-height: 120px; }
+
+  .qna-button-group {
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .qna-button,
+  .qna-button.register,
+  .qna-button.list,
+  .qna-button.delete {
+    width: 100%;
+    height: 40px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+
+  .qna-footer {
+    gap: 8px;
+    margin: 16px 0 0;
+  }
+
+  .qna-detail-box { padding: 18px; }
+  .qna-content,
+  .qna-answer,
+  .admin-qna-content {
+    margin-top: 10px;
+    padding: 10px;
+    line-height: 1.55;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .admin-qna-answer { height: 120px; font-size: 13.5px; }
+
+  .qna-table thead th:not(:nth-child(2)):not(:nth-child(3)) {
+    display: none;
+  }
+  .qna-table tbody td:not(:nth-child(2)):not(:nth-child(3)) {
+    display: none;
+  }
+
+  .qna-link {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .qna-title { font-size: 17px; }
+  .qna-button,
+  .qna-button.register,
+  .qna-button.list,
+  .qna-button.delete { height: 38px; font-size: 13.5px; }
+  .qna-detail-box { padding: 16px; }
+}

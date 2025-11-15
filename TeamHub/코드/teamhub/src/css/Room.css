@@ -1,0 +1,315 @@
+.room-container,
+.reservation-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.room-container {
+  margin-top: 60px;
+}
+
+.room-container h2 {
+  margin-top: 60px;
+}
+
+.reservation-container {
+  margin-top: 100px;
+}
+
+.room-card {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.room-image {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.room-info {
+  flex: 1;
+  text-align: left;
+}
+
+.room-desc {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
+
+.room-options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.room-options label {
+  font-size: 14px;
+}
+
+.room-options select,
+.room-options input {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 60px;
+}
+
+.room-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+  white-space: nowrap;
+  margin-bottom: 6px;
+}
+
+.room-action-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+}
+
+.top-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  padding: 0 6px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.calendar-section {
+  flex: 1;
+}
+
+.days-row,
+.row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+}
+
+.day-name {
+  text-align: center;
+  font-weight: bold;
+}
+
+.cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selected-date {
+  background-color: #699fd6;
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.in-range {
+  background-color: rgba(25, 118, 210, 0.15);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.range-start .in-range {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.range-end .in-range {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.reserve-btn,
+.room-soldout {
+  padding: 6px 12px;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  width: 80px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.reserve-btn {
+  background-color: #006400;
+  color: white;
+  cursor: pointer;
+}
+
+.reserve-btn:disabled,
+.room-soldout {
+  background-color: #ccc;
+  color: #999;
+  cursor: default;
+}
+
+.cell.past {
+  color: #ccc;
+  pointer-events: none;
+}
+
+.cell.disabled {
+  color: #eee;
+}
+
+.month-btn {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.month-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: #666;
+}
+
+.month-btn:hover {
+  background: #f9f9f9;
+}
+
+.info-section {
+  flex: 1;
+  text-align: left;
+}
+
+.info-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-section ul li {
+  margin-bottom: 8px;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.date-range-box {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.date-range-box svg {
+  font-size: 20px;
+}
+
+@media (max-width: 768px) and (min-width: 600px) {
+  .room-card {
+    gap: 10px;
+  }
+
+  .room-image {
+    width: 150px;
+    height: 100px;
+  }
+
+  .room-price {
+    font-size: 16px;
+  }
+
+  .top-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calendar-section,
+  .info-section {
+    width: 100%;
+  }
+
+  .info-section {
+    margin-top: 16px;
+    padding: 0 10px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 599px) {
+  .room-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .room-image {
+    width: 100%;
+    height: auto;
+    margin: 0 0 10px 0;
+  }
+
+  .room-price {
+    font-size: 16px;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .top-section {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .calendar-section,
+  .info-section {
+    width: 100% !important;
+  }
+
+  .info-section {
+    margin-top: 16px !important;
+    padding: 0 10px !important;
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+  }
+}

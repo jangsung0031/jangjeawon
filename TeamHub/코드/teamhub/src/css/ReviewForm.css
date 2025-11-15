@@ -1,0 +1,165 @@
+.review-form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.review-form-container h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.reservation-summary {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.reservation-summary img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.reservation-summary p {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.rating-section {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.rating-section span {
+  font-size: 30px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.rating-section span:hover {
+  color: #ffaa00;
+}
+
+.radio-section {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+}
+
+.radio-section p {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.radio-section label {
+  display: block;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.image-upload-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.image-upload-label:hover {
+  background-color: #0056b3;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.review-preview-image {
+  display: block;
+  max-width: 100%;
+  max-height: 200px;
+  margin: 10px auto;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.submit-review-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-review-btn:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 768px) {
+  .review-form-container {
+    padding: 20px;
+    margin: 20px 10px;
+  }
+
+  .reservation-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reservation-summary img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .rating-section span {
+    font-size: 26px;
+    margin: 0 3px;
+  }
+
+  .radio-section label {
+    font-size: 14px;
+  }
+
+  textarea {
+    font-size: 13px;
+  }
+
+  .submit-review-btn {
+    font-size: 15px;
+    padding: 10px;
+  }
+}
