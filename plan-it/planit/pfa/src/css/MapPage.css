@@ -1,0 +1,667 @@
+/* ===== 레이아웃 기본 ===== */
+.map-page {
+    display: flex;
+    height: 100vh;
+    position: relative;
+}
+
+.map-page .side-panel {
+    width: 300px;
+    background: #fff;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* ===== 카테고리 컨테이너 ===== */
+.map-page .cat-section {
+    display: block;
+    margin: 0 0 8px;
+}
+
+/* ===== 카테고리 토글(칩) ===== */
+.map-page .cat-toggle-group {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.map-page .cat-row {
+    display: grid;
+    gap: 8px;
+}
+
+.map-page .cat-row.row-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.map-page .cat-row.row-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.map-page .cat-toggle {
+    --cat: #888;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid #999;
+    /* ✅ 기본 테두리: 진한 회색 */
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+    transition: box-shadow .2s, border-color .2s, background .2s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    width: 100%;
+}
+
+.map-page .cat-toggle input {
+    display: none;
+}
+
+.map-page .cat-toggle .cat-icon {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--cat);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--cat) 20%, transparent);
+}
+
+.map-page .cat-toggle .cat-label {
+    font-size: 14px;
+}
+
+/* 선택된 상태 */
+.map-page .cat-toggle.on {
+    border-color: color-mix(in srgb, var(--cat) 60%, #888);
+    background: color-mix(in srgb, var(--cat) 15%, #fff);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--cat) 22%, transparent);
+}
+
+/* hover 효과 */
+@media (hover:hover) and (pointer:fine) {
+    .map-page .cat-toggle:hover {
+        border-color: color-mix(in srgb, var(--cat) 50%, #666);
+        background: color-mix(in srgb, var(--cat) 10%, #fff);
+    }
+}
+
+/* ===== 결과 리스트 (공통) ===== */
+.map-page .place-list {
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+}
+
+.map-page .place-item {
+    --cat: #ccc;
+    display: grid;
+    grid-template-columns: 16px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-left: 4px solid var(--cat);
+    border-radius: 8px;
+    transition: background .15s, transform .08s, box-shadow .15s, border-color .15s;
+    cursor: pointer;
+    background: #fff;
+}
+
+.map-page .place-item+.place-item {
+    margin-top: 6px;
+}
+
+.map-page .place-item:hover {
+    background: color-mix(in srgb, var(--cat) 8%, #fff);
+}
+
+.map-page .place-item:active {
+    transform: translateY(1px);
+}
+
+.map-page .place-item .cat-icon.sm {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--cat);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--cat) 25%, transparent);
+}
+
+.map-page .place-texts {
+    min-width: 0;
+}
+
+.map-page .place-title {
+    display: block;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: #111;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.map-page .place-addr {
+    font-size: 12px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.map-page .place-dist {
+    font-size: 12px;
+    color: #333;
+    padding-left: 8px;
+}
+
+/* 선택 상태 */
+.map-page .place-item.selected {
+    background: color-mix(in srgb, var(--cat) 12%, #fff);
+    border-color: color-mix(in srgb, var(--cat) 60%, #fff);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--cat) 22%, transparent);
+}
+
+/* ===== 지도 영역 ===== */
+.map-page .map-container {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    touch-action: pan-x pan-y pinch-zoom;
+}
+
+.map-page #map {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-x pan-y pinch-zoom;
+    pointer-events: auto !important;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
+
+.map-page #map:active {
+    cursor: grabbing;
+}
+
+/* 우측 버튼 */
+.map-page .map-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 15;
+    margin-top: 60px;
+    pointer-events: none;
+    transition: bottom .25s ease;
+}
+
+.map-page .map-controls button {
+    border: none;
+    background: #fff;
+    padding: 8px 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+    cursor: pointer;
+    font-size: 14px;
+    pointer-events: auto;
+}
+
+/* 필터 모달 */
+.map-page .filter-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.map-page .filter-modal .modal-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.map-page .filter-modal .sort-btns button {
+    margin: 5px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #999;
+}
+
+.map-page .filter-modal .sort-btns .on {
+    background: #2d6cdf;
+    color: #fff;
+    border-color: #2d6cdf;
+}
+
+/* 중앙 상단 검색 버튼 (데스크톱) */
+.map-page .map-topbar {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    pointer-events: none;
+    margin-top: 60px;
+}
+
+.map-page .btn-search-here {
+    pointer-events: auto;
+    border: 1px solid #999;
+    background: rgba(255, 255, 255, .96);
+    backdrop-filter: blur(8px);
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .15);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 데스크톱/모바일 전환 */
+.map-page .desk-only {
+    display: block;
+}
+
+.map-page .mobile-only {
+    display: none;
+}
+
+/* 모바일 하단 시트 */
+.map-page .list-sheet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 25;
+    pointer-events: none;
+}
+
+.map-page .list-sheet .sheet-header {
+    pointer-events: auto;
+    width: clamp(260px, 92vw, 700px);
+    margin: 0 auto 8px;
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, .96);
+    backdrop-filter: blur(8px);
+    border: 1px solid #999;
+    border-radius: 14px;
+    padding: 10px 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .15);
+}
+
+.map-page .list-sheet .drag-handle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #bbb;
+    display: inline-block;
+}
+
+.map-page .list-sheet .toggle-tip {
+    font-size: 12px;
+    color: #666;
+}
+
+.map-page .list-sheet .sheet-body {
+    pointer-events: none;
+    width: clamp(260px, 92vw, 700px);
+    margin: 0 auto 12px;
+    background: rgba(255, 255, 255, .98);
+    border: 1px solid #999;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+    overflow: hidden;
+    transition: max-height .25s ease;
+    max-height: 0;
+}
+
+.map-page .list-sheet.open .sheet-body {
+    max-height: 65vh;
+    overflow-y: auto;
+    pointer-events: auto;
+}
+
+.map-page .list-sheet.closed .sheet-body {
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* 스크롤 제어 */
+html,
+body,
+#root {
+    height: 100%;
+    overscroll-behavior: none;
+}
+
+/* 모바일 전용 inline 검색 버튼 */
+.map-page .search-inline {
+    display: none;
+}
+
+.map-page .btn-search-inline {
+    width: 100%;
+    border: 1px solid #999;
+    background: rgba(255, 255, 255, .96);
+    backdrop-filter: blur(8px);
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .15);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 반응형 */
+@media (max-width:768px) {
+    :root {
+        --sheet-header-h: 48px;
+        --sheet-gap: 8px;
+        --sheet-body-h: 0px;
+    }
+
+    .map-page {
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .map-page .side-panel {
+        width: 100%;
+        border-right: 0;
+        border-bottom: 1px solid #eee;
+        padding: 12px 12px 8px;
+    }
+
+    .map-page .cat-toggle-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 8px;
+        margin-bottom: 0;
+    }
+
+    .map-page .cat-row {
+        display: contents;
+    }
+
+    /* ✅ 모바일 전용: 선택 안된 카테고리 테두리 더 진하게 (#666) */
+    .map-page .cat-toggle {
+        border: 1px solid #666;
+    }
+
+    .map-page .cat-toggle {
+        padding: 8px 12px;
+        min-height: auto;
+        width: auto;
+    }
+
+    .map-page .cat-toggle .cat-label {
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .map-page .desk-only {
+        display: none;
+    }
+
+    .map-page .mobile-only {
+        display: block;
+    }
+
+    .map-page .map-topbar {
+        display: none;
+    }
+
+    .map-page .search-inline {
+        display: block;
+        margin: 8px 0 4px;
+    }
+
+    .map-page .map-controls {
+        position: absolute;
+        top: auto;
+        right: 12px;
+        bottom: calc(env(safe-area-inset-bottom) + var(--sheet-header-h, 48px) + var(--sheet-gap, 8px) + var(--sheet-body-h, 0px) + 16px);
+        flex-direction: row;
+        gap: 10px;
+        margin-top: 0;
+        z-index: 100;
+        pointer-events: none;
+        transition: bottom .25s ease;
+    }
+
+    .map-page .map-controls button {
+        pointer-events: auto;
+        padding: 12px 14px;
+        font-size: 15px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+    }
+
+    .map-page .list-sheet {
+        pointer-events: none;
+    }
+
+    .map-page .list-sheet .sheet-header {
+        pointer-events: auto;
+    }
+
+    .map-page .list-sheet.closed .sheet-body {
+        pointer-events: none;
+    }
+
+    .map-page .list-sheet.open .sheet-body {
+        pointer-events: auto;
+    }
+}
+
+@media (min-width:769px) {
+    .map-page .list-sheet {
+        display: none !important;
+    }
+}
+
+@media (max-width:360px) {
+    .map-page .map-controls button {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+/* ===== Plan B: 지도 영역 강제 복구 (가장 아래에 추가) ===== */
+
+/* 전역 reset/utility가 덮은 핵심 속성만 되돌림 */
+.map-page #map * {
+    font: revert !important;
+    line-height: normal !important;
+    box-sizing: content-box !important;
+}
+
+/* a, button 이 flex/unstyled 로 깨지는 문제 강제 복구 */
+.map-page #map :where(a, button, .btn, .link) {
+    all: revert !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    height: auto !important;
+    line-height: normal !important;
+    padding: 0.5rem 0.9rem !important;
+    border-radius: 6px !important;
+    border: 1px solid #d9d9d9 !important;
+    background: #fff !important;
+    color: #111 !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+}
+
+/* 카드 컨테이너류(카카오 예제 클래스 + 흔한 커스텀오버레이 케이스) */
+.map-page #map :where(.placeinfo_wrap, .wrap, .info, .desc, .overlaybox) {
+    all: revert !important;
+    padding: 10px !important;
+    border: 1px solid #e5e5e5 !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .12) !important;
+}
+
+/* ‘길찾기’ / ‘카카오맵에서 보기’ 버튼 높이 겹침 방지 */
+.map-page #map :where(.placeinfo_wrap, .wrap) .link {
+    height: 36px !important;
+    line-height: 36px !important;
+    padding: 0 14px !important;
+}
+
+/* 전역 a { color:#fff !important } 같은 규칙 무력화 */
+.map-page #map a {
+    color: #111 !important;
+}
+
+/* ====== POI 카드 최종 스킨: 최하단 추가 ====== */
+.map-page #map .poi-card {
+    /* 박스 */
+    width: clamp(220px, 90vw, 320px) !important;
+    max-width: 320px !important;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif !important;
+    background: #fff !important;
+    border: 1px solid rgba(0, 0, 0, .08) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .18) !important;
+    overflow: hidden !important;
+}
+
+/* 헤더 */
+.map-page #map .poi-card .poi-head {
+    display: grid !important;
+    grid-template-columns: 12px 1fr !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 12px 14px 6px !important;
+}
+
+.map-page #map .poi-card .poi-dot {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background: #2d6cdf !important;
+    box-shadow: 0 0 0 4px rgba(45, 108, 223, .12) !important;
+}
+
+.map-page #map .poi-card .poi-title,
+.map-page #map .poi-card :is(.title, strong) {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #0a3a78 !important;
+    line-height: 1.35 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* 주소 */
+.map-page #map .poi-card .poi-addr,
+.map-page #map .poi-card p {
+    margin: 0 14px 10px !important;
+    font-size: 13px !important;
+    color: #555 !important;
+    line-height: 1.45 !important;
+}
+
+.map-page #map .poi-card .poi-addr a,
+.map-page #map .poi-card p a {
+    color: #0a58ca !important;
+    text-decoration: none !important;
+}
+
+.map-page #map .poi-card .poi-addr a:hover,
+.map-page #map .poi-card p a:hover {
+    text-decoration: underline !important;
+}
+
+/* 버튼 영역: p 다음 div, 혹은 아무 컨테이너/직계 a 모두 지원 */
+.map-page #map .poi-card p+div,
+.map-page #map .poi-card .poi-actions {
+    display: flex !important;
+    gap: 8px !important;
+    padding: 10px 14px 14px !important;
+    border-top: 1px solid #eef2f7 !important;
+}
+
+/* 직계 a(컨테이너 유무 상관없이 커버) */
+.map-page #map .poi-card :is(p + div, .poi-actions)>a,
+.map-page #map .poi-card>a {
+    flex: 1 1 0 !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 36px !important;
+    padding: 0 14px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    border-radius: 10px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    background: #fff !important;
+    color: #0a3a78 !important;
+    border: 1px solid #c9d4e6 !important;
+    transition: background .15s, box-shadow .15s, transform .05s !important;
+}
+
+@media (hover:hover) {
+
+    .map-page #map .poi-card :is(p + div, .poi-actions)>a:hover,
+    .map-page #map .poi-card>a:hover {
+        background: #f2f6ff !important;
+        box-shadow: 0 2px 8px rgba(13, 60, 133, .18) !important;
+    }
+}
+
+.map-page #map .poi-card :is(p + div, .poi-actions)>a:active,
+.map-page #map .poi-card>a:active {
+    transform: translateY(1px) !important;
+}
+
+/* 두 번째 버튼 프라이머리 */
+.map-page #map .poi-card :is(p + div, .poi-actions)>a:last-child {
+    background: #2d6cdf !important;
+    color: #fff !important;
+    border-color: #2d6cdf !important;
+}
+
+@media (hover:hover) {
+    .map-page #map .poi-card :is(p + div, .poi-actions)>a:last-child:hover {
+        background: #2357be !important;
+    }
+}
+
+/* 모바일 터치 타깃 */
+@media (max-width: 768px) {
+
+    .map-page #map .poi-card :is(p + div, .poi-actions)>a,
+    .map-page #map .poi-card>a {
+        min-height: 40px !important;
+        border-radius: 12px !important;
+    }
+}

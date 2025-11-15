@@ -1,0 +1,394 @@
+:root {
+    --bg: #f5f7fa;
+    --panel: #ffffff;
+    --ink: #1a1f29;
+    --muted: #6b7280;
+    --primary: #0a3a78;
+    --ring: #4f8cff;
+    --chip: #e8eefc;
+    --success: #059669;
+    --error: #dc2626;
+    --warning: #d97706;
+}
+
+.edit-profile-wrap {
+    padding: 100px 24px 24px 24px;
+    background: var(--bg);
+    min-height: 100vh;
+    box-sizing: border-box;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Header */
+.edit-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--panel);
+    border-radius: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #f1f5f9;
+    color: var(--ink);
+}
+
+.header-texts {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-texts h1 {
+    margin: 0;
+    font-size: 28px;
+    color: var(--ink);
+}
+
+.header-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    background: #eef2f7;
+    border-radius: 999px;
+    padding: 2px 8px;
+}
+
+/* Form */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-section {
+    background: var(--panel);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
+
+.section-title {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+/* Profile Upload */
+.profile-upload {
+    display: flex;
+    justify-content: center;
+}
+
+.upload-preview {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.upload-preview img,
+.upload-placeholder {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    background: #f1f5f9;
+    border: 3px solid #e5e9f2;
+    object-fit: cover;
+}
+
+.upload-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    border: 3px solid var(--panel);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.upload-btn:hover {
+    background: #0d2f62;
+    transform: scale(1.05);
+}
+
+/* Form Fields */
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field:last-child {
+    margin-bottom: 0;
+}
+
+.field-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+}
+
+.field-content {
+    position: relative;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e5e9f2;
+    border-radius: 10px;
+    font-size: 14px;
+    background: #fafbfc;
+    color: var(--ink);
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--ring);
+    background: var(--panel);
+    box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.1);
+}
+
+.form-input.error {
+    border-color: var(--error);
+    background: #fef2f2;
+}
+
+.form-input.error:focus {
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Field with Button */
+.field-with-button {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.field-with-button .form-input {
+    flex: 1;
+}
+
+/* Password Field */
+.password-field {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.password-toggle:hover {
+    color: var(--ink);
+    background: #f1f5f9;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    padding: 12px 20px;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #0d2f62;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #f8fafc;
+    color: var(--muted);
+    border: 1px solid #e5e9f2;
+    padding: 12px 20px;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #f1f5f9;
+    color: var(--ink);
+}
+
+.btn-small {
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.btn-medium {
+    padding: 12px 20px;
+    font-size: 14px;
+}
+
+.btn.loading {
+    pointer-events: none;
+}
+
+.btn-spinner {
+    animation: spin 1s linear infinite;
+    font-size: 16px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Messages */
+.field-error {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--error);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.field-success {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding: 24px;
+    background: var(--panel);
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+    margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .edit-profile-wrap {
+        padding: 16px;
+    }
+
+    .edit-header {
+        margin-bottom: 24px;
+    }
+
+    .edit-header h1 {
+        font-size: 24px;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    .field-with-button {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .field-with-button .btn {
+        align-self: flex-start;
+        min-width: 120px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-profile-wrap {
+        padding: 12px;
+    }
+
+    .upload-preview {
+        width: 80px;
+        height: 80px;
+    }
+
+    .upload-preview img,
+    .upload-placeholder {
+        width: 80px;
+        height: 80px;
+        font-size: 36px;
+    }
+
+    .upload-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+}

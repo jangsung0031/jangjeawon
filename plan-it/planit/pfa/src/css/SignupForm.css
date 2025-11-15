@@ -1,0 +1,178 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Pretendard', sans-serif;
+  padding: 40px;
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.signup-left {
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-logo {
+  width: 220px;
+  margin-bottom: 24px;
+}
+
+.signup-left h2 {
+  font-size: 22px;
+  text-align: center;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.signup-right {
+  width: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-form {
+  width: 100%;
+  background-color: #fff;
+  padding: 40px 36px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.signup-form h2 {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.signup-form input {
+  padding: 16px 18px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.signup-button {
+  padding: 16px;
+  background-color: #1995dc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.login-link {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 0;
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 닉네임 입력창 + 버튼 한 줄 정렬 */
+.nickname-group {
+  display: flex;
+  gap: 8px;
+}
+
+.nickname-group input {
+  flex: 1;
+}
+
+/* 닉네임 중복확인 버튼 */
+.check-button {
+  padding: 12px 16px;
+  background-color: #1995dc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* 유효성 에러 메시지 */
+.error-msg {
+  color: #ff3b3b;
+  font-size: 13px;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+input.invalid {
+  border: 2px solid #e53935;
+  background-color: #fff; /* 배경은 하얗게 유지 */
+}
+
+.check-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+
+
+@media (max-width: 768px) {
+  .signup-container {
+    flex-direction: column;
+    padding: 24px 16px;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: auto;
+    gap: 0;
+  }
+
+  .signup-left {
+    display: none;
+  }
+
+  .signup-right {
+    width: 100%;
+    flex: none;
+  }
+
+  .signup-form {
+    width: 100%;
+    max-width: 100%;
+    padding: 32px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+  }
+
+  .signup-form h2 {
+    font-size: 22px;
+  }
+
+  .signup-form input {
+    font-size: 15px;
+    padding: 14px 16px;
+  }
+
+  .signup-button {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .login-link {
+    font-size: 14px;
+  }
+}

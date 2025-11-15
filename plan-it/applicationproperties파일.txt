@@ -1,0 +1,50 @@
+# spring.application.name=pib
+
+# server.port=8080
+
+# spring.datasource.url=jdbc:mysql://localhost:3306/planit?useSSL=false&serverTimezone=Asia/Seoul
+# spring.datasource.username=root
+# spring.datasource.password=1111
+
+# spring.jpa.hibernate.ddl-auto=update
+# spring.jpa.show-sql=true
+
+# # SMTP Gmail ??
+# spring.mail.host=smtp.gmail.com
+# spring.mail.port=587
+# spring.mail.username=planit0917@gmail.com
+# spring.mail.password=vefyohywqffmdzzw
+# spring.mail.properties.mail.smtp.auth=true
+# spring.mail.properties.mail.smtp.starttls.enable=true
+# spring.mail.default-encoding=UTF-8
+
+# coolsms.api.key=NCSID2W4FVAVBUX7
+# coolsms.api.secret=UV71TXP20C9J8M6QTHIXBLAO2WFRY2IA
+# coolsms.sender.phone=01074340737
+
+# spring.data.redis.host=localhost
+# spring.data.redis.port=6379
+
+# # AI Model (OpenAI GPT) API Key
+# #openai.api.key=
+# openai.api.key=
+
+# openapi.key=
+# kcisa.key=2780055d-2fa4-4fdc-9da6-4b62916e103c
+
+# api.key.recommend=0ac938f8-b65b-4f0a-aece-3a7ddc17c83a
+
+# #tourapi.key=daa4d179d88eb82a3d2d4b5f6639cac57394eb9c86417c251963857fc05ec5c8
+
+# kakao.api.key=
+
+# spring.web.resources.static-locations=classpath:/static/, file:C:/tour_image
+
+# spring.mvc.static-path-pattern=/static/images/**
+# kakao.rest.key=
+# spring.mvc.pathmatch.matching-strategy=ANT_PATH_MATCHER
+# server.tomcat.relaxed-path-chars=[,],{,},|,<,>,�,(,)
+# server.tomcat.relaxed-query-chars=[,],{,},|,<,>,�,(,)
+
+# file.upload.dir=C:/planit/uploads
+# file.access-path=/uploads/

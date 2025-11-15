@@ -1,0 +1,48 @@
+.festival-carousel-container {
+  max-width: 1200px;
+  margin: 80px auto;
+  --card-h: 280px; /* 카드 높이 제어 */
+}
+
+.festival-carousel-container .section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* slick 폭/트랙 교정 + 스코프 */
+.festival-carousel-container .slick-track { display: flex !important; }
+.festival-carousel-container .slick-slide { box-sizing: border-box; }
+.festival-carousel-container .slick-slide > div { width: 100%; padding: 0 10px; }
+
+.festival-carousel-container .slick-slide .travel-card {
+  outline: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.4s ease;
+}
+.festival-carousel-container .slick-center .travel-card { transform: scale(1); }
+
+.loading-text {
+  text-align: center;
+  padding: 80px;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .festival-carousel-container {
+    margin: 60px auto;
+    --card-h: 250px; /* 모바일 카드 높이 */
+  }
+  .festival-carousel-container .section-title { font-size: 1.5rem; }
+}
+
+/* 슬릭 뷰포트 폭 고정 */
+.festival-carousel-container .slick-list { width: 100%; }
+
+/* 모바일 1장 모드일 땐 패딩/스케일 제거 */
+.festival-carousel-container.is-mobile .slick-slide > div { padding: 0; }
+.festival-carousel-container.is-mobile .slick-center .travel-card { transform: none; }

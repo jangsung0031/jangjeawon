@@ -1,0 +1,213 @@
+# Planit
+
+여행 코스 추천과 사용자의 일정 설계를 통합한 올인원 서비스입니다. AI 챗봇, 공공데이터 기반 축제/여행지 조회, 사용자 맞춤 코스 관리, 관리자 통계 관리를 하나의 모노레포 안에서 제공합니다.
+
+---
+
+## 목차
+1. [전체 개요](#전체-개요)
+2. [기술 스택](#기술-스택)
+3. [디렉터리 구조](#디렉터리-구조)
+4. [백엔드 (pib)](#백엔드-pib)
+5. [프론트엔드 (pfa)](#프론트엔드-pfa)
+6. [로컬 개발 가이드](#로컬-개발-가이드)
+7. [배포 및 운영 메모](#배포-및-운영-메모)
+
+---
+
+## 전체 개요
+- **핵심 가치**: AI 기반 여행 플래너와 실제 공공데이터(한국관광공사 TourAPI, KCISA, 축제 데이터 등)를 결합하여 일정, 장소, 리뷰를 한 번에 관리.
+- **주요 사용자 흐름**
+  1. 이메일/SMS 2차 인증을 거친 회원가입 → JWT 기반 로그인.
+  2. 홈·테마·지도에서 여행지 탐색, 축제/투어 상세 열람.
+  3. AI 플래너(`/api/chat`)에 자연어 요청 → 추천 코스 저장.
+  4. `MyPage`에서 내가 만든 코스·찜 장소 관리 및 수정.
+  5. 관리자 콘솔에서 신고, 사용자, 백업 데이터를 모니터링.
+- **외부 연동**: OpenAI, Kakao Map/REST, KCISA, Tour API, CoolSMS, Gmail SMTP.
+- **저장소**: MySQL 8.0 (DDL 자동 업데이트), Redis(세션/캐시).
+
+---
+
+## 기술 스택
+
+| 영역 | 사용 기술 | 비고 |
+| --- | --- | --- |
+| Frontend | React 19 (CRA), React Router v7, Axios, React Slick, @react-google-maps/api, React Markdown | Proxy로 백엔드(8080) 호출, 세션스토리지 JWT 관리 |
+| Backend | Spring Boot 3.5, Spring Security, JWT, Spring Data JPA, Hibernate, Redis Cache | 비동기 WebClient(WebFlux) + RestTemplate 병행 |
+| Infra & 기타 | MySQL 8, Redis 7, CoolSMS SDK, Gmail SMTP, OpenAI API, Kakao API, KCISA/TourAPI | 파일 업로드는 로컬 `C:/planit/uploads` |
+
+---
+
+## 디렉터리 구조
+
+```
+planit/
+├─ README.mb                # 본 문서
+├─ pfa/                     # React 프론트엔드
+│  ├─ public/
+│  └─ src/
+│     ├─ components/        # 공통 헤더·푸터, 인증/테마/홈 화면
+│     ├─ user/              # AI 플래너, 지도, 마이코스, 투어 리스트 등
+│     ├─ admin/             # 관리자 로그인/대시보드/신고/회원 목록
+│     ├─ api/, module/, util/  # API 헬퍼, 공통 모듈, 유틸
+│     └─ css/, img/         # 스타일·이미지 자원
+└─ pib/                     # Spring Boot 백엔드
+   ├─ build.gradle
+   └─ src/main/java/kr/co/pib
+      ├─ config/            # Security, JWT, CORS, 정적 리소스, SMS 설정
+      ├─ controller/        # Auth, AI, Festival, Tour, Course, Admin 등
+      ├─ dto/, entity/, repository/, service/, util/
+      └─ resources/
+         ├─ application.properties
+         └─ static/, templates/
+```
+
+---
+
+## 백엔드 (pib)
+
+### 아키텍처 개요
+- **SecurityConfig**: 전역 CORS 허용, Stateless JWT 필터 체인, `/api/admin/**` 롤 검증, 공개/보호 엔드포인트 분리.
+- **JwtFilter**: 요청 헤더에서 토큰 파싱 → Authentication 주입 → `@AuthenticationPrincipal`로 userId 전달.
+- **데이터 계층**: Spring Data JPA + MySQL, `ddl-auto=update`, `@EnableCaching`으로 Redis 캐시 지원.
+- **파일 처리**: `FileController`가 이미지 업로드를 `C:/planit/uploads`에 저장, `StaticResourceConfig`로 `/uploads/**` 노출.
+- **알림 채널**: `EmailAuthController`는 Gmail SMTP로 인증코드 발송, `SmsController`는 CoolSMS SDK 사용.
+- **AI/외부 API 연동**
+  - `AiService` → OpenAI API 키로 여행 코스 답변 생성, 사용자별 `AiChatService`가 대화 이력(JPA 엔티티) 관리.
+  - `KcisaApiController`, `TourCourseController`, `MapController` 등은 공공데이터·Kakao API를 RestTemplate/WebClient로 호출.
+
+### 주요 도메인 흐름
+1. **회원/인증 (`UserController`, `UsersController`)**
+   - `/api/auth/signup`: 이메일 인증 세션 확인 후 가입.
+   - `/api/auth/login`: 아이디/이메일 모두 허용, BCrypt 검증, JWT·리프레시 토큰 응답.
+   - `/api/auth/check-*`: 닉네임/이메일/전화 중복 검사.
+   - `/api/users/**`: 마이페이지, 개인정보 수정/탈퇴.
+2. **AI 플래너 (`AiChatController`)**
+   - `/api/chat/history`, `/api/chat/messages/{id}`: 사용자 기준 대화 목록/내용 조회.
+   - `/api/chat/ask-ai`: AskRequestDto(요청 내용, 여행 조건 등)를 받아 OpenAI에 질의 → 메시지·코스 엔티티 저장.
+3. **여행/축제 데이터 (`FestivalController`, `TourCourseController`, `KcisaApiController`, `MapController`)**
+   - 축제 목록·상세, 여행지 카테고리별 paging, 공공데이터 추천 코스 조회.
+   - Kakao REST Key로 지도 좌표·검색 지원.
+4. **사용자 코스 (`MyCourseController`, `MyTourCourseController`, `MyPlaceController`)**
+   - 나만의 코스 CRUD, 장소 북마크, AI 추천안 편집 및 발행.
+   - `CourseInteractionController`가 좋아요/조회수/공유 이벤트를 추적.
+5. **관리자 도구 (`Admin*Controller`)**
+   - `/api/admin/login`, `/api/admin/open/**`: 관리자 인증 및 초기화.
+   - 신고 접수/처리, 회원 백업/탈퇴자 목록, 통계 대시보드 데이터 공급.
+
+### 환경 변수 & 설정
+`pib/src/main/resources/application.properties`의 민감정보는 **운영 시 별도 `application-local.properties`나 외부 환경변수로 분리**하세요.
+
+필수 항목:
+```
+spring.datasource.url=jdbc:mysql://<host>:3306/planit?serverTimezone=Asia/Seoul
+spring.datasource.username=<user>
+spring.datasource.password=<pass>
+
+spring.data.redis.host=<redis-host>
+spring.data.redis.port=<port>
+
+spring.mail.username=<gmail-id>
+spring.mail.password=<app-password>
+
+coolsms.api.key=<sms-key>
+coolsms.api.secret=<sms-secret>
+
+openai.api.key=<openai-key>
+kcisa.key=<kcisa-key>
+kakao.api.key=<js-key>
+kakao.rest.key=<rest-key>
+file.upload.dir=<absolute-path>
+file.access-path=/uploads/
+```
+
+### 실행 방법
+```bash
+cd planit/pib
+./gradlew clean build        # 또는 gradlew.bat
+./gradlew bootRun
+```
+- 기본 포트 `8080`.
+- MySQL `planit` 스키마와 Redis 인스턴스가 선행 구동되어 있어야 합니다.
+- 최초 기동 시 `AdminAccountInitializer`가 기본 관리자 계정을 자동 삽입합니다.
+
+---
+
+## 프론트엔드 (pfa)
+
+### 라우팅 & 페이지 흐름
+- `App.js` 기준 주요 경로:
+  - `/`, `/theme/*`, `/festival`, `/festival/:id`: 홈/테마/축제 소개.
+  - `/tourlist/:city/:area/:cat/:arr/:pgno`, `/tourinfo/...`: 한국관광공사 제공 여행지 리스트·상세.
+  - `/aitalk`: AI 플래너. 사용자 Context를 묻고 `/api/chat/ask-ai` 호출 → 추천 일정/메시지 출력.
+  - `/course/list`, `/course/detail/:id`: 공개 코스 카탈로그.
+  - `/mypage`, `/mypage/my-courses`, `/my-course/edit/:courseId`: 내 정보·코스 관리.
+  - `/admin/*`: 관리자 로그인/신고/회원/탈퇴회원 관리.
+  - `/map`: 구글맵 기반 여행지 시각화(@react-google-maps/api).
+- **상태 관리**: 전역 스토어 없이 컴포넌트 상태 + `sessionStorage` 토큰. 인증이 필요한 API 호출 시 `Authorization: Bearer <token>` 헤더 셋업(axios 인터셉터 `src/api` 참고).
+
+### 주요 컴포넌트/모듈
+- `components/SignupForm`: 이메일/전화 중복 체크, Gmail 인증코드, CoolSMS 연동, 유효성 검사.
+- `components/LoginForm`: JWT 수신 후 `sessionStorage` 저장, 로그인 상태에 따라 리다이렉트.
+- `user/ai/AiPlanner`: 대화 이력 조회, 질문/답변 렌더링, 추천 코스 카드 UI.
+- `user/KcisaCoursePage`, `user/tour/*`: 공공데이터 Fetch, 필터/페이지네이션 UI.
+- `user/MyCourse*`: 나만의 코스 CRUD, drag & drop 편집, 서버와 양방향 동기화.
+- `admin/*`: 신고 리스트, 회원 관리 테이블, 상태 필터링.
+- `components/Header/Footer`: 공통 내비게이션·CTA.
+
+### 스타일 및 자산
+- CSS 모듈 없이 전역 CSS(`src/css/*`). Slick Carousel, React Icons으로 UI 구성을 보조합니다.
+- 이미지 리소스는 `src/img`, 외부 업로드 이미지는 백엔드 `/uploads/` 경로.
+
+### 실행 방법
+```bash
+cd planit/pfa
+npm install
+npm start          # 기본적으로 PORT=80 (package.json scripts 참고)
+```
+- `proxy`가 `http://localhost:8080`으로 설정되어 있으므로 동일 머신에서 백엔드를 먼저 기동하십시오.
+- 프로덕션 번들: `npm run build` → `build/` 산출물.
+
+### 개발 시 유의사항
+- 새 API를 추가하면 `src/api`의 axios 인스턴스에 인터셉터를 등록하여 토큰 만료 처리(401 → 로그인 페이지 이동) 로직을 재사용하세요.
+- 인증이 필요한 라우트는 `sessionStorage.getItem('token')` 여부로 가드하고, 관리자 페이지는 서버 권한을 추가 검증합니다.
+- 지도/외부 SDK 키는 `.env` (예: `REACT_APP_KAKAO_KEY`)로 노출을 최소화하세요.
+
+---
+
+## 로컬 개발 가이드
+1. **사전 준비**
+   - Node.js 18 이상, npm 10 이상.
+   - JDK 17, Gradle Wrapper 사용.
+   - MySQL 8, Redis 7, (선택) Coolsms/Gmail/OpenAI API 키.
+2. **데이터베이스**
+   - `CREATE DATABASE planit CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;`
+   - 필요 시 `planit(백업).sql`을 임포트하여 초기 데이터를 로드하세요.
+3. **환경 변수 관리**
+   - 운영/배포 환경에서는 `application.properties` 대신 `application-prod.yml` 또는 시스템 환경변수 사용.
+   - 프론트 `.env`에 민감한 키(예: 지도, 측정 키)를 주입한 뒤 `.env`는 커밋하지 않습니다.
+4. **동시 실행**
+   - 터미널 A: `./gradlew bootRun`
+   - 터미널 B: `npm start`
+   - 필요 시 `concurrently` 패키지로 스크립트를 묶어 사용할 수 있습니다.
+5. **테스트**
+   - 백엔드: `./gradlew test`
+   - 프론트: `npm test` (React Testing Library)
+
+---
+
+## 배포 및 운영 메모
+- **빌드 아티팩트**
+  - 백엔드: `./gradlew bootJar` → `build/libs/pib-0.0.1-SNAPSHOT.jar`
+  - 프론트: `npm run build` → 정적 호스팅 또는 백엔드 정적리소스로 서빙.
+- **환경 분리**
+  - Prod에서 파일 업로드 경로(`file.upload.dir`)와 정적 리소스 매핑(`/uploads/**`)를 OS에 맞게 변경.
+  - HTTPS(프록시) 앞단에서 `X-Forwarded-*` 헤더 처리 필요 시 `WebConfig` 확장.
+- **모니터링**
+  - Redis를 통한 캐시 적중률, OpenAI/Tour API 호출량을 별도 로그로 남겨 한도 초과를 방지합니다.
+  - `AdminReportOpenController`가 프런트 관리자 대시보드에 데이터를 공급하므로, 장애 시 관리자 기능부터 확인하세요.
+
+---
+
+필요한 추가 섹션이나 다이어그램이 있다면 알려주세요. README를 계속 확장해 드리겠습니다.
+

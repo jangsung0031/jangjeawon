@@ -1,0 +1,48 @@
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  outline: none;
+}
+
+.star-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0; /* 아이콘만 보이게 */
+  padding: 2px;
+  transition: transform 0.12s ease;
+}
+
+.star-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.star-button:hover:not(:disabled) {
+  transform: scale(1.08);
+}
+
+.star-icon {
+  width: 26px;
+  height: 26px;
+  stroke: #ffb400;
+  fill: none;
+}
+
+.star-button.is-active .star-icon {
+  fill: #ffd34d;
+}
+
+.star-info {
+  color: #666;
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+.star-hint {
+  color: #999;
+  font-size: 12px;
+  margin-left: 6px;
+}

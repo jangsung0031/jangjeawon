@@ -1,0 +1,39 @@
+.theme-carousel-outer-container {
+  max-width: 1200px;
+  margin: 80px auto;
+  --card-h: 320px; /* 테마 카드 높이 */
+}
+
+.theme-carousel-outer-container .theme-section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* slick 폭/트랙 교정 + 스코프 */
+.theme-carousel-outer-container .slick-list { width: 100%; }     /* ✅ 풀폭 보장 */
+.theme-carousel-outer-container .slick-track { display: flex !important; }
+.theme-carousel-outer-container .slick-slide { box-sizing: border-box; }
+.theme-carousel-outer-container .slick-slide > div { width: 100%; padding: 0 10px; }
+
+.theme-carousel-outer-container .slick-slide .travel-card {
+  outline: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.4s ease;
+}
+.theme-carousel-outer-container .slick-center .travel-card { transform: scale(1); }
+
+/* 모바일 최적화: 패딩/스케일 제거해서 옆 카드 비침 방지 */
+.theme-carousel-outer-container.is-mobile .slick-slide > div { padding: 0; }
+.theme-carousel-outer-container.is-mobile .slick-center .travel-card { transform: none; }
+
+@media (max-width: 768px) {
+  .theme-carousel-outer-container {
+    margin: 60px auto;
+    --card-h: 250px; /* 모바일 카드 높이 */
+  }
+  .theme-carousel-outer-container .theme-section-title { font-size: 1.5rem; }
+}

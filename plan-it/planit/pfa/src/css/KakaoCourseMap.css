@@ -1,0 +1,17 @@
+.kakao-map {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f4f6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.custom-iw {
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}

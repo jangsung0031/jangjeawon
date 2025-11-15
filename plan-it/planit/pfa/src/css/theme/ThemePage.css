@@ -1,0 +1,114 @@
+.hero-section {
+  height: 80vh; /* 화면 높이의 80%를 차지 */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  
+  /* 배경 이미지 설정 */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* 스크롤 시 이미지가 고정되는 Parallax 효과 */
+}
+
+/* 텍스트가 잘 보이도록 어두운 오버레이 추가 */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+  position: relative; /* 오버레이 위에 텍스트가 오도록 */
+  max-width: 800px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+/* --- 2. 하단 상세 콘텐츠 섹션 스타일 --- */
+.content-section {
+  max-width: 900px;
+  margin: 0 auto; /* 위쪽 마진 없이 바로 이어지도록 */
+  padding: 80px 20px;
+  background-color: #fff;
+  position: relative; /* hero 섹션 위로 살짝 올라오는 효과를 위해 */
+}
+
+.spot-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.spot-section:last-child {
+  margin-bottom: 0; /* 마지막 아이템의 하단 마진 제거 */
+}
+
+.spot-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.spot-image-wrapper {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.spot-image {
+  width: 100%;
+  display: block;
+}
+
+.spot-text-content {
+  flex: 1;
+}
+
+.spot-text-content h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.spot-text-content p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* 모바일 화면 대응 */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .spot-section,
+  .spot-section.reverse {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+}

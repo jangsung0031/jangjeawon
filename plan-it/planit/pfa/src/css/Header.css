@@ -1,0 +1,211 @@
+.header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 60px;
+  z-index: 1000;
+  background: #fff;
+  display: flex; align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-container { flex-shrink: 0; }
+.logo-image { height: 60px; }
+
+.nav-links {
+  margin-left: auto;
+  display: flex; align-items: center;
+  gap: 16px;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.nav-links > a,
+.nav-links > span {
+  color: black;
+  text-decoration: none;
+  font-size: 14px; font-weight: 500;
+  padding: 2px 14px; cursor: pointer;
+}
+
+.nav-links > a:hover,
+.nav-links > span:hover { text-decoration: underline; }
+
+/* ✅ 닉네임 hover 시 밑줄 제거 */
+.nav-link:hover:not(:contains("님")) {
+  text-decoration: underline;
+}
+
+/* 위 코드 대신 조금 더 정확한 버전 */
+.nav-link.nickname:hover {
+  text-decoration: none;
+  cursor: default; /* 포인터도 평범하게 */
+}
+
+
+.mobile-header { display: none; }
+.mobile-logo { height: 40px; }
+.hamburger-icon { font-size: 24px; color: black; cursor: pointer; }
+
+.dropdown { position: relative; display: inline-block; }
+
+.dropdown-menu {
+  position: absolute; top: 100%; left: 0;
+  background: white; border-radius: 10px;
+  min-width: 180px; padding: 8px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(10px);
+  opacity: 0; visibility: hidden;
+  transition: all 0.25s ease-in-out;
+  z-index: 2000;
+}
+
+.dropdown:hover .dropdown-menu {
+  transform: translateY(0);
+  opacity: 1; visibility: visible;
+}
+
+.dropdown-menu .dropdown-item {
+  display: block;
+  padding: 10px 16px;
+  color: #666;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-bottom: 6px;
+}
+.dropdown-menu .dropdown-item:last-child { margin-bottom: 0; }
+.dropdown-menu .dropdown-item:hover {
+  background: #f3f8ff;
+  color: #0077cc;
+}
+
+.dropdown > .nav-link {
+  display: inline-block;
+  padding: 2px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #000;
+  font-family: inherit;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column; align-items: flex-start;
+    height: auto; padding: 10px 16px;
+  }
+  .logo-container { display: none; }
+
+  .mobile-header {
+    display: flex; width: 91%;
+    justify-content: space-between; align-items: center;
+  }
+
+  .nav-links {
+    position: fixed; top: 60px; right: -100%;
+    flex-direction: column;
+    background: #fff;
+    height: calc(100% - 60px); width: 250px;
+    padding: 20px;
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+    display: flex; align-items: flex-start;
+    gap: 12px;
+    overflow-y: auto;
+  }
+  .nav-links.active { right: 0; }
+
+  .nav-links > a,
+  .nav-links > span {
+    font-size: 16px; padding: 8px 0;
+  }
+
+  .mobile-backdrop {
+    position: fixed; top: 60px; left: 0;
+    width: 100%; height: calc(100% - 60px);
+    background: rgba(0,0,0,0.4); z-index: 998;
+  }
+
+  .dropdown .dropdown-menu {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .accordion { width: 100%; }
+
+  .accordion-trigger {
+    width: 100%;
+    background: transparent; border: 0; outline: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0;
+    font-size: 16px; color: #222; cursor: pointer;
+  }
+  .accordion-trigger .chev {
+    transition: transform 0.2s ease; font-size: 18px;
+  }
+  .accordion-trigger .chev.rotate { transform: rotate(180deg); }
+
+  .accordion-panel {
+    display: none;
+    margin-top: 6px;
+    background: #f4f7fb;
+    border-radius: 6px;
+    padding: 10px 12px;
+    width: 100%;
+  }
+  .accordion-panel.open { display: block; }
+
+  .accordion-item {
+    display: block;
+    padding: 8px 6px;
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .accordion-item + .accordion-item { margin-top: 6px; }
+
+  .accordion-item:active, .accordion-item:focus { text-decoration: none; }
+
+  .accordion-panel {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  }
+
+.accordion-trigger {
+  all: unset;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  font-family: inherit;
+  padding: 8px 0;
+}
+
+.accordion-trigger .chev {
+  margin-left: 6px;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.accordion-trigger:hover {
+  text-decoration: underline;
+}
+
+.accordion-trigger,
+.accordion-trigger:hover,
+.accordion-trigger:focus {
+  text-decoration: none !important;
+}
+
+}

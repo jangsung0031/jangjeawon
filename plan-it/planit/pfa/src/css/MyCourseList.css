@@ -1,0 +1,82 @@
+/* 페이지 전용 네임스페이스 */
+#myCoursesPage .my-course-container {
+  max-width: 1200px;
+  margin: 80px auto 0;        /* 헤더 고정이면 여백 확보 */
+  padding: 20px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 항상 가운데 정렬: flex 사용 */
+#myCoursesPage .course-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;    /* ← 핵심: 가운데 */
+}
+
+/* 빈 상태 메시지도 가운데 */
+#myCoursesPage .my-empty {
+  padding: 60px 0 80px;
+  text-align: center;
+  color: #666;
+}
+
+/* 카드 */
+#myCoursesPage .course-card {
+  width: 300px;               /* 카드 폭 고정 → 줄바꿈 시에도 중앙 유지 */
+  border: 1px solid #c3c3c3;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#myCoursesPage .course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* M20px 오타 수정 */
+}
+
+#myCoursesPage .course-img { width: 100%; height: 180px; object-fit: cover; }
+
+#myCoursesPage .course-badge {
+  position: absolute; top: 12px; left: 12px;
+  color: #fff; padding: 4px 8px; border-radius: 6px;
+  font-size: 12px; font-weight: 700;
+  background: #2563eb;
+}
+
+#myCoursesPage .course-info { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+#myCoursesPage .course-info h3 {
+  margin: 0 0 8px; font-size: 18px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#myCoursesPage .course-info p {
+  font-size: 14px; color: #666; margin: 0 0 12px; line-height: 1.5;
+  height: 42px; overflow: hidden; text-overflow: ellipsis;
+  display: -webkit-box; -webkit-box-orient: vertical;
+}
+#myCoursesPage .course-info small { font-size: 12px; color: #888; margin-top: auto; }
+
+#myCoursesPage .course-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0f0f0;
+  font-size: 13px; color: #555;
+}
+
+#myCoursesPage .course-actions {
+  display: flex; gap: 8px; padding: 0 16px 16px; border-top: 1px solid #f0f0f0;
+}
+
+#myCoursesPage .course-actions button {
+  flex: 1; padding: 9px 12px; font-size: 14px; border: none; border-radius: 8px;
+  cursor: pointer; font-weight: 700; transition: background-color .2s;
+}
+
+#myCoursesPage .edit-btn { background:#f0f8ff; color:#007bff; border:1px solid #cce5ff; }
+#myCoursesPage .edit-btn:hover { background:#e0f0ff; }
+#myCoursesPage .delete-btn { background:#fff0f0; color:#e74c3c; border:1px solid #ffcccc; }
+#myCoursesPage .delete-btn:hover { background:#ffe0e0; }

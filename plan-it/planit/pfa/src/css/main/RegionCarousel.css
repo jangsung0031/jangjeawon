@@ -1,0 +1,93 @@
+.region-carousel-section {
+  width: 100%;
+  padding: 60px 0;
+  background-color: #FFF5F7;
+  margin: 100px 0;
+}
+
+.region-carousel-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.region-carousel-container h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+/* slick 폭/트랙 교정 + 스코프 */
+.region-carousel-section .slick-track { display: flex !important; }
+.region-carousel-section .slick-slide { box-sizing: border-box; }
+.region-carousel-section .slick-slide > div { width: 100%; padding: 0 15px; }
+
+.region-slide-item {
+  position: relative;
+  outline: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(0.9);
+  transition: transform 0.4s ease-in-out;
+}
+.region-carousel-section .slick-center .region-slide-item {
+  transform: scale(1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.region-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.region-name-overlay {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  padding: 40px 20px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  text-align: center;
+}
+.region-name-overlay span {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* 화살표 커스텀 */
+.region-carousel-section .slick-prev,
+.region-carousel-section .slick-next {
+  width: 50px;
+  height: 50px;
+  z-index: 1;
+}
+.region-carousel-section .slick-prev { left: -60px; }
+.region-carousel-section .slick-next { right: -60px; }
+.region-carousel-section .slick-prev:before,
+.region-carousel-section .slick-next:before {
+  font-size: 50px;
+  color: #333;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .region-carousel-section { margin: 60px 0; padding: 40px 0; }
+  .region-carousel-container { width: 100%; }
+  .region-carousel-container h2 { font-size: 1.8rem; margin-bottom: 30px; }
+  .region-image { height: 300px; }
+  .region-carousel-section .slick-slide > div { padding: 0 8px; }
+  .region-carousel-section .slick-prev,
+  .region-carousel-section .slick-next { display: none !important; }
+}
+
+/* 슬릭 뷰포트 폭 고정 */
+.region-carousel-section .slick-list { width: 100%; }
+
+/* 모바일에선 패딩/스케일 제거 → 옆 카드 비침 방지 */
+.region-carousel-section.is-mobile .slick-slide > div { padding: 0; }
+.region-carousel-section.is-mobile .slick-center .region-slide-item { transform: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }

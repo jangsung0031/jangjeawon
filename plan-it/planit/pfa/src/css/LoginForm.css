@@ -1,0 +1,147 @@
+.login-container {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Pretendard', sans-serif;
+  padding: 40px;
+  gap: 24px;             /* ✅ 기존보다 좁게 */
+  max-width: 1300px;     /* ✅ 너무 벌어지지 않게 */
+  margin: 0 auto;
+}
+
+
+.login-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1; /* 좌측 비율 크게 */
+  max-width: 600px;
+}
+
+.login-logo {
+  width: 300px; /* 로고 크기 키움 */
+  margin-bottom: 30px;
+}
+
+.login-left h2 {
+  font-size: 28px;
+  text-align: center;
+  color: #05415E;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.login-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1; /* 우측 비율 크게 */
+}
+
+.login-form {
+  width: 100%;
+  max-width: 520px; /* 로그인 박스 크기 확장 */
+  background-color: #fff;
+  padding: 48px 40px; /* 내부 여백 넉넉히 */
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.login-form h2 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: #222;
+}
+
+.login-form input {
+  padding: 16px 18px;
+  font-size: 17px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.login-button {
+  padding: 16px;
+  background-color: #1995dc;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.signup-link {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    padding: 20px 16px;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: auto;
+  }
+
+  .login-left {
+    display: none;
+  }
+
+  .login-right {
+    width: 100%;
+    flex: none;
+  }
+
+  .login-form {
+    width: 100%;
+    max-width: 100%;
+    padding: 32px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+  }
+
+  .login-form h2 {
+    font-size: 24px;
+  }
+
+  .login-form input {
+    font-size: 16px;
+    padding: 14px 16px;
+  }
+
+  .login-button {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .signup-link {
+    font-size: 14px;
+  }
+  .find-account-link {
+  text-align: right;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.find-account-link a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.find-account-link a:hover {
+  text-decoration: underline;
+}
+}
